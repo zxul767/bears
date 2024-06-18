@@ -926,21 +926,23 @@ test = ["codecov", "coverage", "ipykernel (>=6.5)", "ipython", "mypy", "pre-comm
 
 [[package]]
 name = "jupyter-core"
-version = "4.10.0"
+version = "5.7.2"
 description = "Jupyter core package. A base package on which Jupyter projects rely."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "jupyter_core-4.10.0-py3-none-any.whl", hash = "sha256:e7f5212177af7ab34179690140f188aa9bf3d322d8155ed972cbded19f55b6f3"},
-    {file = "jupyter_core-4.10.0.tar.gz", hash = "sha256:a6de44b16b7b31d7271130c71a6792c4040f077011961138afed5e5e73181aec"},
+    {file = "jupyter_core-5.7.2-py3-none-any.whl", hash = "sha256:4f7315d2f6b4bcf2e3e7cb6e46772eba760ae459cd1f59d29eb57b0a01bd7409"},
+    {file = "jupyter_core-5.7.2.tar.gz", hash = "sha256:aa5f8d32bbf6b431ac830496da7392035d6f61b4f54872f15c4bd2a9c3f536d9"},
 ]
 
 [package.dependencies]
-pywin32 = {version = ">=1.0", markers = "sys_platform == \"win32\" and platform_python_implementation != \"PyPy\""}
-traitlets = "*"
+platformdirs = ">=2.5"
+pywin32 = {version = ">=300", markers = "sys_platform == \"win32\" and platform_python_implementation != \"PyPy\""}
+traitlets = ">=5.3"
 
 [package.extras]
-test = ["ipykernel", "pre-commit", "pytest", "pytest-cov", "pytest-timeout"]
+docs = ["myst-parser", "pydata-sphinx-theme", "sphinx-autodoc-typehints", "sphinxcontrib-github-alt", "sphinxcontrib-spelling", "traitlets"]
+test = ["ipykernel", "pre-commit", "pytest (<8)", "pytest-cov", "pytest-timeout"]
 
 [[package]]
 name = "jupyter-events"
@@ -1772,6 +1774,22 @@ files = [
     {file = "pkgutil_resolve_name-1.3.10-py3-none-any.whl", hash = "sha256:ca27cc078d25c5ad71a9de0a7a330146c4e014c2462d9af19c6b828280649c5e"},
     {file = "pkgutil_resolve_name-1.3.10.tar.gz", hash = "sha256:357d6c9e6a755653cfd78893817c0853af365dd51ec97f3d358a819373bbd174"},
 ]
+
+[[package]]
+name = "platformdirs"
+version = "4.2.2"
+description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "platformdirs-4.2.2-py3-none-any.whl", hash = "sha256:2d7a1657e36a80ea911db832a8a6ece5ee53d8de21edd5cc5879af6530b1bfee"},
+    {file = "platformdirs-4.2.2.tar.gz", hash = "sha256:38b7b51f512eed9e84a22788b4bce1de17c0adb134d6becb09836e37d8654cd3"},
+]
+
+[package.extras]
+docs = ["furo (>=2023.9.10)", "proselint (>=0.13)", "sphinx (>=7.2.6)", "sphinx-autodoc-typehints (>=1.25.2)"]
+test = ["appdirs (==1.4.4)", "covdefaults (>=2.3)", "pytest (>=7.4.3)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)"]
+type = ["mypy (>=1.8)"]
 
 [[package]]
 name = "preshed"
@@ -3017,18 +3035,19 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [[package]]
 name = "voila"
-version = "0.3.5"
+version = "0.3.8"
 description = "Voilà turns Jupyter notebooks into standalone web applications"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "voila-0.3.5-py3-none-any.whl", hash = "sha256:6d158aa529c21f18e8236b0085df3940ce4518cc42dd96588c20da26825542fb"},
-    {file = "voila-0.3.5.tar.gz", hash = "sha256:640acadb6e787370f32a5264e0f644c0bcb0d0c8026823f6d296cea725c6b289"},
+    {file = "voila-0.3.8-py3-none-any.whl", hash = "sha256:34cdc57613fa40d959611a3e80ac733be7c246b2e293541d4bddee0dfa5860f4"},
+    {file = "voila-0.3.8.tar.gz", hash = "sha256:54e15464387bac57e162bc4a18a685c8f4b75132455a3974a3d146dde5166b9b"},
 ]
 
 [package.dependencies]
 jupyter-client = ">=6.1.3,<8"
-jupyter-server = ">=0.3.0,<2.0.0"
+jupyter-core = ">=4.11.0"
+jupyter-server = ">=1.18,<2.0.0"
 jupyterlab-server = ">=2.3.0,<3"
 nbclient = ">=0.4.0,<0.6"
 nbconvert = ">=6.4.5,<7"
@@ -3037,8 +3056,8 @@ websockets = ">=9.0"
 
 [package.extras]
 dev = ["black", "bump2version", "jupyter-releaser (>=0.6,<1.0)"]
-test = ["ipywidgets", "matplotlib", "mock", "numpy", "pandas", "pytest", "pytest-tornasync"]
-visual-test = ["bqplot", "ipympl (==0.8.7)", "ipyvolume", "jupyterlab (>=3.0,<4.0)", "jupyterlab-miami-nights (==0.3.2)", "scipy"]
+test = ["ipywidgets (==7.6.0)", "matplotlib (>=3.5.3,<=3.6.0)", "mock", "numpy", "pandas", "papermill", "pytest", "pytest-rerunfailures", "pytest-tornasync"]
+visual-test = ["bqplot (==0.12.36)", "ipympl (==0.8.8)", "ipyvolume (==0.5.2)", "jupyterlab (>=3.0,<4.0)", "jupyterlab-miami-nights (==0.3.2)", "scipy (==1.9.1)"]
 
 [[package]]
 name = "wasabi"
@@ -3295,4 +3314,4 @@ testing = ["func-timeout", "jaraco.itertools", "pytest (>=6)", "pytest-black (>=
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.5"
-content-hash = "cd84409a61f0b5ccea3f823e05fb432b443d7d1e801ae8cd44e93647b1e8e142"
+content-hash = "06cdcecacd0b5b4202e9fdcb5e515bc524d0e58cda190a39c17a31418cf0739b"
